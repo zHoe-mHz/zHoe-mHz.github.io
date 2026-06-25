@@ -5,78 +5,107 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profil Pribadi Batik Emas</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 :root{
     --gold:#d4af37;
-    --gold-soft:#f0d67a;
-    --black:#0f0f0f;
-    --card:#181818;
+    --gold-soft:#f4d77d;
+    --black:#090909;
+    --card:#111111dd;
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
     min-height:100vh;
     color:white;
+    overflow-x:hidden;
     background:
-        radial-gradient(circle at 25px 25px, rgba(212,175,55,0.12) 2px, transparent 3px),
-        radial-gradient(circle at 75px 75px, rgba(212,175,55,0.12) 2px, transparent 3px),
-        linear-gradient(135deg,#000,#151515);
-    background-size:100px 100px;
-    padding:30px;
+    radial-gradient(circle at 10% 10%,rgba(212,175,55,.15),transparent 20%),
+    radial-gradient(circle at 90% 20%,rgba(212,175,55,.15),transparent 25%),
+    radial-gradient(circle at 50% 80%,rgba(212,175,55,.08),transparent 25%),
+    #050505;
 }
 
-/* Ornamen batik */
+/* Pola Batik */
 body::before{
     content:"";
     position:fixed;
     inset:0;
+    opacity:.15;
     background:
-    repeating-radial-gradient(
-        circle at center,
-        transparent 0 12px,
-        rgba(212,175,55,0.05) 12px 14px
-    );
+    repeating-radial-gradient(circle at center,
+    transparent 0 18px,
+    var(--gold) 18px 20px,
+    transparent 20px 40px);
     pointer-events:none;
 }
 
 .container{
-    max-width:1200px;
+    width:95%;
+    max-width:1400px;
     margin:auto;
+    padding:25px;
 }
 
-.profile{
-    background:rgba(20,20,20,0.92);
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.profile-card{
+    flex:1;
+    min-width:320px;
+    background:var(--card);
     border:1px solid var(--gold);
     border-radius:20px;
-    padding:30px;
-    text-align:center;
-    box-shadow:0 0 20px rgba(212,175,55,0.2);
+    padding:25px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 25px rgba(212,175,55,.25);
 }
 
-.profile h1{
-    color:var(--gold);
+.profile-card h1{
+    color:var(--gold-soft);
     margin-bottom:10px;
 }
 
-.profile p{
+.profile-card p{
     color:#ddd;
     line-height:1.7;
 }
 
 .social{
-    margin-top:20px;
+    margin-top:15px;
 }
 
 .social a{
     color:var(--gold-soft);
     text-decoration:none;
-    margin:0 12px;
+    margin-right:15px;
+}
+
+.clock-box{
+    width:300px;
+    background:var(--card);
+    border:1px solid var(--gold);
+    border-radius:20px;
+    text-align:center;
+    padding:20px;
+}
+
+#clock{
+    font-size:42px;
+    color:var(--gold-soft);
     font-weight:bold;
 }
 
@@ -87,72 +116,124 @@ body::before{
     gap:20px;
 }
 
-.card{
-    background:rgba(24,24,24,0.95);
-    border:1px solid rgba(212,175,55,.4);
+.widget{
+    background:var(--card);
+    border:1px solid var(--gold);
     border-radius:18px;
     padding:20px;
+    box-shadow:0 0 15px rgba(212,175,55,.15);
 }
 
-.card h3{
-    color:var(--gold);
+.widget h3{
+    color:var(--gold-soft);
     margin-bottom:15px;
 }
 
-.clock{
-    font-size:2.5rem;
-    text-align:center;
-    color:var(--gold-soft);
-    font-weight:bold;
+/* Search */
+.search-box{
+    display:flex;
+    gap:10px;
 }
 
-.date{
-    text-align:center;
-    margin-top:10px;
+.search-box input{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:10px;
 }
 
-.calendar{
+.search-box button{
+    background:var(--gold);
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* Kalender */
+.calendar iframe{
     width:100%;
-    border-collapse:collapse;
+    height:300px;
+    border:none;
+    border-radius:10px;
 }
 
-.calendar th,
-.calendar td{
-    border:1px solid rgba(212,175,55,.2);
-    text-align:center;
-    padding:8px;
-}
-
-.calendar th{
-    color:var(--gold);
-}
-
-.weather{
-    text-align:center;
-    font-size:1.1rem;
+/* Saham */
+.stock{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
 .stock-item{
     display:flex;
     justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:10px;
+    border:1px solid rgba(212,175,55,.3);
+    border-radius:10px;
 }
 
 .up{
-    color:#34d399;
-    font-weight:bold;
+    color:#00ff88;
 }
 
 .down{
-    color:#f87171;
-    font-weight:bold;
+    color:#ff6666;
+}
+
+/* Apps */
+.apps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.app{
+    border:1px solid var(--gold);
+    border-radius:15px;
+    padding:20px 10px;
+    text-align:center;
+    transition:.3s;
+    background:#0b0b0b;
+}
+
+.app:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 20px rgba(212,175,55,.4);
+}
+
+.app a{
+    text-decoration:none;
+    color:white;
+    display:block;
+}
+
+.app span{
+    display:block;
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+/* Cuaca */
+.weather{
+    text-align:center;
+}
+
+.weather .temp{
+    font-size:42px;
+    color:var(--gold-soft);
 }
 
 .footer{
     text-align:center;
-    margin-top:25px;
+    margin-top:30px;
     color:#999;
+}
+
+@media(max-width:768px){
+    .apps{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 </style>
 </head>
@@ -160,150 +241,167 @@ body::before{
 
 <div class="container">
 
-    <div class="profile">
-        <h1><proper></proper>Agus Mashudi</h1>
-        <p>
-            Halo, saya seorang profesional yang memiliki minat pada teknologi,
-            investasi, dan pengembangan digital. Selamat datang di halaman profil saya.
-        </p>
+    <div class="header">
 
-        <div class="social">
-            <a href="#">Instagram</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">X / Twitter</a>
+        <div class="profile-card">
+            <h1><prper></prper>Agus Mhazudi</h1>
+            <p>
+                Halo, saya seorang profesional yang tertarik pada teknologi,
+                bisnis, investasi, dan pengembangan digital.
+                Selamat datang di halaman profil pribadi saya.
+            </p>
+
+            <div class="social">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">YouTube</a>
+            </div>
         </div>
+
+        <div class="clock-box">
+            <div id="clock">00:00:00</div>
+            <div id="date"></div>
+        </div>
+
     </div>
 
     <div class="grid">
 
-        <!-- Jam -->
-        <div class="card">
-            <h3>Jam Digital</h3>
-            <div class="clock" id="clock">00:00:00</div>
-            <div class="date" id="date"></div>
+        <!-- GOOGLE SEARCH -->
+        <div class="widget">
+            <h3>🔍 Google Search</h3>
+
+            <form action="https://www.google.com/search" method="GET" target="_blank">
+                <div class="search-box">
+                    <input type="text" name="q" placeholder="Cari di Google...">
+                    <button type="submit">Cari</button>
+                </div>
+            </form>
         </div>
 
-        <!-- Kalender -->
-        <div class="card">
-            <h3>Kalender</h3>
-
-            <table class="calendar">
-                <thead>
-                    <tr>
-                        <th>Min</th>
-                        <th>Sen</th>
-                        <th>Sel</th>
-                        <th>Rab</th>
-                        <th>Kam</th>
-                        <th>Jum</th>
-                        <th>Sab</th>
-                    </tr>
-                </thead>
-                <tbody id="calendar-body"></tbody>
-            </table>
+        <!-- WEATHER -->
+        <div class="widget weather">
+            <h3>🌤 Cuaca</h3>
+            <div class="temp">30°C</div>
+            <p>Cerah Berawan</p>
+            <small>Sidoarjo, Jawa Timur</small>
+            <br><br>
+            <small>
+                Hubungkan ke API OpenWeatherMap untuk data realtime.
+            </small>
         </div>
 
-        <!-- Cuaca -->
-        <div class="card">
-            <h3>Cuaca</h3>
-            <div class="weather">
-                🌤️ Cerah Berawan<br><br>
-                Suhu: 31°C<br>
-                Kelembapan: 75%<br>
-                Lokasi: Sidoarjo
-            </div>
+        <!-- CALENDAR -->
+        <div class="widget calendar">
+            <h3>📅 Kalender</h3>
+
+            <iframe
+            src="https://calendar.google.com/calendar/embed?mode=MONTH">
+            </iframe>
         </div>
 
-        <!-- Saham Himbara -->
-        <div class="card">
-            <h3>Fluktuasi Saham Bank Himbara</h3>
+        <!-- SAHAM HIMBARA -->
+        <div class="widget">
+            <h3>📈 Saham Bank Himbara</h3>
 
-            <div class="stock-item">
-                <span>BBRI</span>
-                <span class="up">+1.25%</span>
+            <div class="stock">
+
+                <div class="stock-item">
+                    <span>BBRI</span>
+                    <span class="up">+1.25%</span>
+                </div>
+
+                <div class="stock-item">
+                    <span>BMRI</span>
+                    <span class="up">+0.75%</span>
+                </div>
+
+                <div class="stock-item">
+                    <span>BBNI</span>
+                    <span class="down">-0.20%</span>
+                </div>
+
+                <div class="stock-item">
+                    <span>BBTN</span>
+                    <span class="up">+0.55%</span>
+                </div>
+
             </div>
 
-            <div class="stock-item">
-                <span>BMRI</span>
-                <span class="up">+0.82%</span>
-            </div>
-
-            <div class="stock-item">
-                <span>BBNI</span>
-                <span class="down">-0.43%</span>
-            </div>
-
-            <div class="stock-item">
-                <span>BBTN</span>
-                <span class="up">+2.11%</span>
-            </div>
+            <br>
+            <small>
+                Data di atas contoh statis. Dapat dihubungkan ke API IDX,
+                TradingView, atau Yahoo Finance.
+            </small>
         </div>
 
     </div>
 
+    <!-- APLIKASI -->
+    <div class="widget" style="margin-top:20px;">
+        <h3>📱 Aplikasi Favorit</h3>
+
+        <div class="apps">
+
+            <div class="app">
+                <a href="https://facebook.com" target="_blank">
+                    <span>📘</span>
+                    Facebook
+                </a>
+            </div>
+
+            <div class="app">
+                <a href="https://instagram.com" target="_blank">
+                    <span>📷</span>
+                    Instagram
+                </a>
+            </div>
+
+            <div class="app">
+                <a href="https://youtube.com" target="_blank">
+                    <span>▶️</span>
+                    YouTube
+                </a>
+            </div>
+
+            <div class="app">
+                <a href="https://shopee.co.id" target="_blank">
+                    <span>🛒</span>
+                    Shopee
+                </a>
+            </div>
+
+        </div>
+    </div>
+
     <div class="footer">
-        © 2026 Profil Pribadi Tema Batik Hitam & Emas
+        © 2026 - Profil Pribadi Tema Batik Hitam & Emas
     </div>
 
 </div>
 
 <script>
-// JAM
 function updateClock(){
     const now = new Date();
 
-    document.getElementById("clock").innerHTML =
+    const time =
         now.toLocaleTimeString('id-ID');
 
-    document.getElementById("date").innerHTML =
+    const date =
         now.toLocaleDateString('id-ID',{
             weekday:'long',
-            day:'numeric',
+            year:'numeric',
             month:'long',
-            year:'numeric'
+            day:'numeric'
         });
+
+    document.getElementById('clock').textContent = time;
+    document.getElementById('date').textContent = date;
 }
 
 setInterval(updateClock,1000);
 updateClock();
-
-// KALENDER
-function createCalendar(){
-    const body = document.getElementById("calendar-body");
-
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth();
-
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    let row = document.createElement("tr");
-
-    for(let i=0;i<firstDay;i++){
-        row.innerHTML += "<td></td>";
-    }
-
-    for(let day=1; day<=daysInMonth; day++){
-
-        if((firstDay + day - 1)%7===0 && day!==1){
-            body.appendChild(row);
-            row=document.createElement("tr");
-        }
-
-        if(day===date.getDate()){
-            row.innerHTML +=
-            `<td style="background:#d4af37;color:black;font-weight:bold">${day}</td>`;
-        }else{
-            row.innerHTML += `<td>${day}</td>`;
-        }
-    }
-
-    body.appendChild(row);
-}
-
-createCalendar();
 </script>
 
 </body>
